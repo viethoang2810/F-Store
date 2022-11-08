@@ -34,7 +34,9 @@ namespace SaleWinApp
             {
                 if(txtUsername.Text.Equals(json["username"].ToString()) && txtPassword.Text.Equals(json["password"].ToString()))
                 {
-                    MessageBox.Show("Login successfully");
+                    frmMain main = new frmMain();
+                    main.Show();
+                    this.Hide();
                 }
                 else
                 {
