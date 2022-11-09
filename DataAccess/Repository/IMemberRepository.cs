@@ -13,5 +13,7 @@ namespace DataAccess.Repository
         bool DeleteMember(string email);
         void CreateMember(Member  member);
         Member GetMember(string email);
+
+        void UpdateMember(Member member);
     }
 }

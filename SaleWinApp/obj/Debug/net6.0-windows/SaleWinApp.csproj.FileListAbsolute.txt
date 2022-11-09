@@ -66,3 +66,4 @@ D:\F_Store\F-Store\SaleWinApp\bin\Debug\net6.0-windows\DataAccess.pdb
 D:\F_Store\F-Store\SaleWinApp\bin\Debug\net6.0-windows\BusinessObject.pdb
 D:\F_Store\F-Store\SaleWinApp\obj\Debug\net6.0-windows\SaleWinApp.csproj.CopyComplete
 D:\F_Store\F-Store\SaleWinApp\obj\Debug\net6.0-windows\SaleWinApp.frmAddMember.resources
+D:\F_Store\F-Store\SaleWinApp\obj\Debug\net6.0-windows\SaleWinApp.frmUpdate.resources

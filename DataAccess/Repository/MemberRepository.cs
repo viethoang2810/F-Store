@@ -53,5 +53,10 @@ namespace DataAccess.Repository
             }
             return false;
         }
+
+        public void UpdateMember(Member member)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

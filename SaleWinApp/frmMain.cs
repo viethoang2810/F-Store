@@ -14,6 +14,8 @@ namespace SaleWinApp
 {
     public partial class frmMain : Form
     {
+        public static string SetValueForCompanyName, SetValueForCity, SetValueForCountry, SetValueForPassword;
+
         IMemberRepository _memberRepository;
         BindingSource _bindingSource;
         public frmMain()
@@ -62,7 +64,16 @@ namespace SaleWinApp
 
         private void btnUpdate_Click(object sender, EventArgs e)
         {
+         
 
+            int selectRowIndex = dgvMembers.CurrentCell.RowIndex;
+            SetValueForCompanyName =  dgvMembers.Rows[selectRowIndex].Cells[2].Value.ToString();
+            SetValueForCity = dgvMembers.Rows[selectRowIndex].Cells[3].Value.ToString();
+            SetValueForCountry = dgvMembers.Rows[selectRowIndex].Cells[4].Value.ToString();
+            SetValueForPassword = dgvMembers.Rows[selectRowIndex].Cells[5].Value.ToString();
+            frmUpdate update = new frmUpdate();
+            update.ShowDialog();
+            
         }
 
         private void btnDelete_Click(object sender, EventArgs e)
