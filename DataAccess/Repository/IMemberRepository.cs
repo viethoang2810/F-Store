@@ -10,7 +10,7 @@ namespace DataAccess.Repository
     public interface IMemberRepository
     {
         IEnumerable<Member> GetAllMembers();
-
+        bool DeleteMember(string email);
         void CreateMember(Member  member);
         Member GetMember(string email);
     }

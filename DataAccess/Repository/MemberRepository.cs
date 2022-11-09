@@ -36,6 +36,22 @@ namespace DataAccess.Repository
         public Member? GetMember(string email)
         {
             return this._storeContext.Members.Where(c => c.Email.Equals(email)).FirstOrDefault();
+        }   
+
+        public bool DeleteMember(string email)
+        {
+            var memberDelete = GetMember(email);
+            if(memberDelete != null)
+            {
+                _storeContext.Remove(memberDelete);
+                _storeContext.SaveChanges();
+            }
+            var memberChecked = GetMember(email);
+            if (memberChecked == null)
+            {
+                return true;
+            }
+            return false;
         }
     }
 }

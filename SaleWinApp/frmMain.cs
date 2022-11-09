@@ -1,4 +1,5 @@
-﻿using DataAccess.Repository;
+﻿using BusinessObject;
+using DataAccess.Repository;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -66,16 +67,47 @@ namespace SaleWinApp
 
         private void btnDelete_Click(object sender, EventArgs e)
         {
-
+            int selectRowIndex = dgvMembers.CurrentCell.RowIndex;
+            DataGridViewRow rowData = dgvMembers.Rows[selectRowIndex];
+            bool deleteChecked = _memberRepository.DeleteMember(dgvMembers.Rows[selectRowIndex].Cells[1].Value.ToString());
+            if (deleteChecked)
+            {
+                MessageBox.Show($"Delete member {dgvMembers.Rows[selectRowIndex].Cells[1].Value.ToString()} successfully");
+            }
+            else
+            {
+                MessageBox.Show("Delete failed");
+            }
         }
 
         private void btnExit_Click(object sender, EventArgs e)
         {
-
+            frmLogin login = new frmLogin();
+            login.Show();
+            this.Hide();
         }
 
         private void btnSave_Click(object sender, EventArgs e)
         {
             LoadDataToDgv();
         }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox1_TextChanged_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnSearch_Click(object sender, EventArgs e)
+        {
+            dgvMembers.DataSource = null;
+            _bindingSource = new BindingSource();
+            _bindingSource.DataSource = _memberRepository.GetMember(txtSearch.Text);
+            dgvMembers.DataSource = _bindingSource;
+        }
+    }
 }

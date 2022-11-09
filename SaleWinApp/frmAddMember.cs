@@ -36,25 +36,32 @@ namespace SaleWinApp
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-
-            var new_members = new Member
-            {
-                Email = txtEmail.Text,
-                CompanyName = txtCompanyName.Text,
-                City = txtCity.Text,
-                Country = txtCountry.Text,
-                Password = txtPassword.Text,
-                Orders = new HashSet<Order>(),
-            };
-            _memberRepository.CreateMember(new_members);
             if (_memberRepository.GetMember(txtEmail.Text) != null)
             {
-                MessageBox.Show("Adding member successfully");
-                this.DialogResult = DialogResult.OK; // load lai dgv
+                MessageBox.Show("This email already exist in store");
             }
             else
             {
-                MessageBox.Show("Cannot adding new member to store");
+                var new_members = new Member
+                {
+                    Email = txtEmail.Text,
+                    CompanyName = txtCompanyName.Text,
+                    City = txtCity.Text,
+                    Country = txtCountry.Text,
+                    Password = txtPassword.Text,
+                    Orders = new HashSet<Order>(),
+                };
+
+                _memberRepository.CreateMember(new_members);
+                if (_memberRepository.GetMember(txtEmail.Text) != null)
+                {
+                    MessageBox.Show("Adding member successfully");
+                    this.DialogResult = DialogResult.OK; // load lai dgv
+                }
+                else
+                {
+                    MessageBox.Show("Cannot adding new member to store");
+                }
             }
         }
 
