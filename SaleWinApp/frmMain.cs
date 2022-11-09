@@ -14,7 +14,7 @@ namespace SaleWinApp
 {
     public partial class frmMain : Form
     {
-        public static string SetValueForCompanyName, SetValueForCity, SetValueForCountry, SetValueForPassword;
+        public static string SetValueForEmail, SetValueForCompanyName, SetValueForCity, SetValueForCountry, SetValueForPassword;
 
         IMemberRepository _memberRepository;
         BindingSource _bindingSource;
@@ -48,7 +48,7 @@ namespace SaleWinApp
             LoadDataToDgv();
         }
 
-        private void LoadDataToDgv()
+        public  void LoadDataToDgv()
         {
             dgvMembers.DataSource = null;
             _bindingSource = new BindingSource();
@@ -59,7 +59,8 @@ namespace SaleWinApp
         private void btnAdd_Click(object sender, EventArgs e)
         {
             frmAddMember addMember = new frmAddMember();
-            addMember.ShowDialog();
+            addMember.Show();
+            this.Hide();
         }
 
         private void btnUpdate_Click(object sender, EventArgs e)
@@ -67,12 +68,14 @@ namespace SaleWinApp
          
 
             int selectRowIndex = dgvMembers.CurrentCell.RowIndex;
+            SetValueForEmail = dgvMembers.Rows[selectRowIndex].Cells[1].Value.ToString();
             SetValueForCompanyName =  dgvMembers.Rows[selectRowIndex].Cells[2].Value.ToString();
             SetValueForCity = dgvMembers.Rows[selectRowIndex].Cells[3].Value.ToString();
             SetValueForCountry = dgvMembers.Rows[selectRowIndex].Cells[4].Value.ToString();
             SetValueForPassword = dgvMembers.Rows[selectRowIndex].Cells[5].Value.ToString();
             frmUpdate update = new frmUpdate();
-            update.ShowDialog();
+            update.Show();
+            this.Hide();
             
         }
 
@@ -89,6 +92,7 @@ namespace SaleWinApp
             {
                 MessageBox.Show("Delete failed");
             }
+            LoadDataToDgv();
         }
 
         private void btnExit_Click(object sender, EventArgs e)

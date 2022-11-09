@@ -54,9 +54,20 @@ namespace DataAccess.Repository
             return false;
         }
 
-        public void UpdateMember(Member member)
+        public bool UpdateMember(Member member)
         {
-            throw new NotImplementedException();
+            var search = GetMember(member.Email);
+            if(search != null)
+            {
+                search.CompanyName = member.CompanyName;
+                search.City = member.City;
+                search.Country = member.Country;
+                search.Password = member.Password;
+
+                _storeContext.SaveChanges();
+                return true;
+            }
+            return false;
         }
     }
 }

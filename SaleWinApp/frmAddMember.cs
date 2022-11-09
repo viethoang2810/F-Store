@@ -55,8 +55,12 @@ namespace SaleWinApp
                 _memberRepository.CreateMember(new_members);
                 if (_memberRepository.GetMember(txtEmail.Text) != null)
                 {
+                   
+                    
                     MessageBox.Show("Adding member successfully");
-                    this.DialogResult = DialogResult.OK; // load lai dgv
+                    frmMain main = new frmMain();
+                    main.Show();
+                    this.Hide();
                 }
                 else
                 {
